@@ -15,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<EfSuperLearningContext>(opt =>
     opt.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Integrated Security=true;Initial Catalog=SuperLearningUser"));
-/*builder.Services.AddTransient<ISuperLearningRepository, EFSuperLearningRepository>();*/
+builder.Services.AddTransient<ISuperLearningRepository, EFSuperLearningRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle*/
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -47,6 +47,37 @@ namespace TodoApi.Controllers
             return Ok();
         }
 
+        [HttpDelete("{id}",Name = "Delete User")]
+        public IActionResult DeleteUser(SuperLearningUser user)
+        {
+            var userToDelete = _superLearningRepository.GetUser(user.Id);
+
+            if (userToDelete == null)
+            {
+                return NotFound();
+            }
+            
+            _superLearningRepository.DeleteUser(userToDelete);
+            return Ok();
+        }
+
+        [HttpPut(Name = "Update User")]
+        public IActionResult UpdateUser(int id, SuperLearningUser user)
+        {
+            var userToUpdate = _superLearningRepository.GetUser(id);
+
+            if (userToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            userToUpdate.Name = user.Name;
+            userToUpdate.Role = user.Role;
+            
+            _superLearningRepository.UpdateUser(userToUpdate);
+            return Ok();
+        }
+
 
 
         private SuperLearningUser UserToDTO(SuperLearningUser user) =>
